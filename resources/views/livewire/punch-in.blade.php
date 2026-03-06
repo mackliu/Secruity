@@ -72,17 +72,36 @@
                 </div>
             </div>
 
-            <!-- GPS 資訊 -->
-            <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                    <span class="relative flex h-2.5 w-2.5">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                    </span>
-                    <span class="text-xs font-semibold text-slate-500">GPS 模組就緒</span>
+            <!-- GPS 資訊與備援方案 -->
+            <div class="mt-8 pt-6 border-t border-slate-100 space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-xs font-semibold text-slate-500">GPS 定位系統</span>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100" id="gps-display">
+                        -- . ------ , -- . ------
+                    </div>
                 </div>
-                <div class="text-[10px] font-mono text-slate-400 bg-slate-50 px-2 py-1 rounded border border-slate-100" id="gps-display">
-                    -- . ------ , -- . ------
+
+                <!-- 備援按鈕 (隱藏或小按鈕形式) -->
+                <div class="bg-amber-50 rounded-2xl p-4 border border-amber-100">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-xs font-bold text-amber-800">GPS 定位失敗？</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button wire:click="punch('in', true)" class="flex-1 py-2 bg-white border border-amber-200 text-amber-700 text-xs font-bold rounded-xl shadow-sm hover:bg-amber-100 transition duration-200">
+                            強制簽到 (手動)
+                        </button>
+                        <button wire:click="punch('out', true)" class="flex-1 py-2 bg-white border border-slate-200 text-slate-600 text-xs font-bold rounded-xl shadow-sm hover:bg-slate-100 transition duration-200">
+                            強制簽退 (手動)
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-amber-600 mt-2 text-center">* 手動簽到將自動通知主管並標記為異常，供事後核對。</p>
                 </div>
             </div>
         </div>

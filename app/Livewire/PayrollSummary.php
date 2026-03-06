@@ -36,13 +36,16 @@ class PayrollSummary extends Component
     }
 
     /**
-     * 匯出 Excel (目前整合為簡單的下載)
+     * 匯出 Excel
      */
     public function exportExcel()
     {
-        // 實際開發中，這裡會建立一個 Excel Export Class
-        // 目前我們先在後台計算，之後可根據需求細化格式
-        session()->flash('message', "已匯出 {$this->year} 年 {$this->month} 月的薪資總表。");
+        $fileName = "Payroll_{$this->year}_{$this->month}.xlsx";
+        
+        return Excel::download(
+            new \App\Exports\PayrollExport($this->payrollData, $this->year, $this->month), 
+            $fileName
+        );
     }
 
     public function render()

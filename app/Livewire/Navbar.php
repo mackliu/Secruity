@@ -3,15 +3,16 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class Navbar extends Component
 {
-    public $currentRoute;
-
-    public function mount()
+    public function logout()
     {
-        $this->currentRoute = Route::currentRouteName();
+        Auth::logout();
+        session()->invalidate();
+        session()->regenerateToken();
+        return redirect()->route('login');
     }
 
     public function render()
